@@ -53,17 +53,20 @@ const NavBar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a>Home</a>
+              <Link to={"/"}>Home</Link>
             </li>
             <li>
-              <a>Send Parcel</a>
+              <Link to={"/send-parcel"}>Send Parcel</Link>
             </li>
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn py-1.5 px-6 bg-red-500 text-white rounded-4xl">
+          <Link
+            to={"/login"}
+            className="btn py-1.5 px-6 bg-red-500 text-white rounded-4xl"
+          >
             Login
-          </a>
+          </Link>
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
