@@ -25,7 +25,6 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await axiosInstance.get("/user/me");
       setUser(response.data.data);
-      console.log("checkauth er data", response.data.data);
       // which means user is now authenticated
       setIsAuthenticated(true);
     } catch (error) {

@@ -17,13 +17,15 @@ export const ParcelProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // THESE PARCEL CRUD are for User
+
   // book parcel
   const bookParcel = async (parcelData) => {
     setLoading(true);
     setError(null);
     try {
       const response = await axiosInstance.post(
-        "/api/parcels/book",
+        "/parcel/book-parcel",
         parcelData
       );
       setParcels((prev) => [response.data.data.parcel, ...prev]);
@@ -40,7 +42,7 @@ export const ParcelProvider = ({ children }) => {
   const fetchMyParcels = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await axiosInstance.get("/parcel/my-parcels");
+      const response = await axiosInstance.get("/parcel/my-parcel");
       setParcels(response.data.data.parcels);
       return { success: true, data: response.data };
     } catch (error) {
@@ -73,7 +75,7 @@ export const ParcelProvider = ({ children }) => {
     setLoading(true);
     try {
       const response = await axiosInstance.put(
-        `/api/parcels/update/${parcelId}`,
+        `/parcel/update/${parcelId}`,
         updateData
       );
 

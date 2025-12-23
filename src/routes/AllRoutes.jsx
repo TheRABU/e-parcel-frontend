@@ -3,6 +3,8 @@ import HomePage from "../pages/Home/HomePage";
 import RootLayout from "../layouts/RootLayout";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
+import DashboardLayout from "../layouts/DashboardLayout";
+import CustomerDashboard from "../pages/Dashboard/Customer/CustomerDashboard";
 
 const AllRoutes = () => {
   const router = createBrowserRouter([
@@ -21,6 +23,16 @@ const AllRoutes = () => {
         {
           path: "/register",
           element: <Register />,
+        },
+      ],
+    },
+    {
+      path: "/dashboard",
+      element: <DashboardLayout />,
+      children: [
+        {
+          path: "/dashboard/customer",
+          element: <CustomerDashboard />,
         },
       ],
     },
