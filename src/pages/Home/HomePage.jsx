@@ -1,4 +1,5 @@
 import riderSvg from "../../assets/rider.svg";
+import SocketTest from "../../components/SocketTest";
 
 const HomePage = () => {
   return (
@@ -18,6 +19,7 @@ const HomePage = () => {
               alt="Rider"
             />
           </div>
+          <SocketTest />
         </header>
       </div>
     </>
