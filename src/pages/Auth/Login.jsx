@@ -20,7 +20,10 @@ const Login = () => {
             </button>
 
             <span className="font-semibold">
-              New here ? <Link to="/register">Register now</Link>
+              New here ?{" "}
+              <Link className="underline" to="/register">
+                Register now
+              </Link>
             </span>
           </fieldset>
         </div>

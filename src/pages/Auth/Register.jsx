@@ -27,7 +27,10 @@ const Register = () => {
             </button>
 
             <span className="font-semibold">
-              Already have account <Link to="/login">Login</Link>
+              Already have account{" "}
+              <Link className="underline" to="/login">
+                Login
+              </Link>
             </span>
           </fieldset>
         </div>
