@@ -9,9 +9,9 @@ const SideBar = () => {
   const isAgent = user?.role === "agent";
 
   const customerLinks = [
-    { name: "Book Parcel", path: "/book-parcel" },
-    { name: "My Parcels", path: "/my-parcels" },
-    { name: "Track Parcel", path: "/track-parcel" },
+    { name: "Book Parcel", path: "/dashboard/customer/book-parcel" },
+    { name: "My Parcels", path: "/dashboard/customer/my-parcels" },
+    { name: "Track Parcel", path: "/dashboard/customer/track-parcel" },
   ];
 
   const agentLinks = [

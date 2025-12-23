@@ -199,29 +199,29 @@ export default function BookParcel() {
 
     try {
       const token = localStorage.getItem("accessToken"); // Adjust based on your auth
+      console.log("Booking parcel with data:", formData);
+      //   const response = await fetch(
+      //     "http://localhost:5000/api/v1/parcel/book-parcel",
+      //     {
+      //       method: "POST",
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //         Authorization: `Bearer ${token}`,
+      //       },
+      //       credentials: "include",
+      //       body: JSON.stringify(formData),
+      //     }
+      //   );
 
-      const response = await fetch(
-        "http://localhost:5000/api/v1/parcel/book-parcel",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          credentials: "include",
-          body: JSON.stringify(formData),
-        }
-      );
+      //   const data = await response.json();
 
-      const data = await response.json();
-
-      if (data.success) {
-        alert(`✅ Parcel booked! Tracking: ${data.data.trackingNumber}`);
-        // Reset form
-        window.location.reload(); // Or navigate to dashboard
-      } else {
-        alert(`❌ Error: ${data.message}`);
-      }
+      //   if (data.success) {
+      //     alert(`✅ Parcel booked! Tracking: ${data.data.trackingNumber}`);
+      //     // Reset form
+      //     window.location.reload(); // Or navigate to dashboard
+      //   } else {
+      //     alert(`❌ Error: ${data.message}`);
+      //   }
     } catch (error) {
       console.error("Error booking parcel:", error);
       alert("Failed to book parcel. Please try again.");
@@ -355,6 +355,94 @@ export default function BookParcel() {
         </div>
 
         {/* Delivery Location Section - Similar structure */}
+        <div className="bg-red-50 p-6 rounded-lg border border-red-200">
+          <h2 className="text-xl font-semibold text-red-800 mb-4 flex items-center">
+            <span className="mr-2">📍</span> Destination Location
+          </h2>
+          <div className="space-y-4">
+            {/* Pickup Address Autocomplete */}
+            <div className="relative">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Destination Address *
+              </label>
+              <input
+                type="text"
+                name="deliveryAddress"
+                value={formData.deliveryAddress}
+                onChange={handleChange}
+                placeholder="Type to search (e.g., Dhaka, Mirpur)"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                required
+              />
+              {loadingDelivery && (
+                <div className="absolute right-3 top-9 text-gray-400">
+                  Searching...
+                </div>
+              )}
+
+              {/* Suggestions Dropdown */}
+              {deliverySuggestions.length > 0 && (
+                <div className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
+                  {deliverySuggestions.map((suggestion, idx) => (
+                    <div
+                      key={idx}
+                      onClick={() => selectLocation(suggestion, "delivery")}
+                      className="px-4 py-2 hover:bg-green-100 cursor-pointer border-b last:border-b-0"
+                    >
+                      <p className="text-sm text-gray-800">
+                        {suggestion.display_name}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Show coordinates */}
+            {formData.deliveryLat && formData.deliveryLng && (
+              <div className="text-xs text-gray-600 bg-gray-100 p-2 rounded">
+                📌 Lat: {formData.deliveryLat.toFixed(4)}, Lng:{" "}
+                {formData.deliveryLng.toFixed(4)}
+              </div>
+            )}
+
+            {/* Map Toggle */}
+            <button
+              type="button"
+              onClick={() => setShowDeliveryMap(!showDeliveryMap)}
+              className="text-sm text-red-600 hover:text-red-700 font-medium"
+            >
+              {showDeliveryMap ? "🗺️ Hide Map" : "🗺️ Select on Map"}
+            </button>
+
+            {/* Map */}
+            {showDeliveryMap && (
+              <div className="h-64 rounded-lg overflow-hidden border border-gray-300">
+                <MapContainer
+                  center={deliveryMarker || [23.8103, 90.4125]} // Dhaka coordinates
+                  zoom={13}
+                  style={{ height: "100%", width: "100%" }}
+                >
+                  <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution="&copy; OpenStreetMap contributors"
+                  />
+                  <LocationSelector
+                    onLocationSelect={(latlng) =>
+                      handleMapClick(latlng, "pickup")
+                    }
+                    markerPosition={deliveryMarker}
+                  />
+                  {deliveryMarker && (
+                    <Marker position={deliveryMarker} icon={deliveryIcon}>
+                      <Popup>Delivery Location</Popup>
+                    </Marker>
+                  )}
+                </MapContainer>
+              </div>
+            )}
+          </div>
+        </div>
         {/* ... (Continue with delivery, parcel details, payment sections) ... */}
 
         {/* Submit Button */}

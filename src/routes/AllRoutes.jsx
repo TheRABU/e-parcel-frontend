@@ -5,6 +5,7 @@ import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 import DashboardLayout from "../layouts/DashboardLayout";
 import CustomerDashboard from "../pages/Dashboard/Customer/CustomerDashboard";
+import BookParcel from "../pages/Dashboard/Customer/BookParcel";
 
 const AllRoutes = () => {
   const router = createBrowserRouter([
@@ -33,6 +34,10 @@ const AllRoutes = () => {
         {
           path: "/dashboard/customer",
           element: <CustomerDashboard />,
+        },
+        {
+          path: "/dashboard/customer/book-parcel",
+          element: <BookParcel />,
         },
       ],
     },
