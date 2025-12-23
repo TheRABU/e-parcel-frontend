@@ -7,11 +7,11 @@ const DashboardLayout = () => {
     <>
       <div>
         <NavBar />
-        <div className="md:flex justify-center items-center">
-          <div className="w-2/6">
+        <div className="md:flex justify-center items-start h-full">
+          <div className="w-2/6 h-auto">
             <SideBar />
           </div>
-          <div className="w-4/6 min-h-screen">
+          <div className="w-4/6">
             <Outlet />
           </div>
         </div>

@@ -6,6 +6,8 @@ import Register from "../pages/Auth/Register";
 import DashboardLayout from "../layouts/DashboardLayout";
 import CustomerDashboard from "../pages/Dashboard/Customer/CustomerDashboard";
 import BookParcel from "../pages/Dashboard/Customer/BookParcel";
+import MyParcels from "../pages/Dashboard/Customer/MyParcels";
+import TrackParcelLive from "../pages/Dashboard/Customer/TrackParcelLive";
 
 const AllRoutes = () => {
   const router = createBrowserRouter([
@@ -38,6 +40,14 @@ const AllRoutes = () => {
         {
           path: "/dashboard/customer/book-parcel",
           element: <BookParcel />,
+        },
+        {
+          path: "/dashboard/customer/my-parcels",
+          element: <MyParcels />,
+        },
+        {
+          path: "/dashboard/customer/track-parcel",
+          element: <TrackParcelLive />,
         },
       ],
     },
