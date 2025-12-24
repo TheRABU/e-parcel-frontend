@@ -136,8 +136,6 @@ export const AgentProvider = ({ children }) => {
     setLoading(true);
     try {
       const response = await axiosInstance.get("/agent/pending");
-
-      // Match backend response structure
       const data = response.data.data;
       setPendingApplications(data.applications || []);
 
@@ -152,13 +150,11 @@ export const AgentProvider = ({ children }) => {
     }
   }, []);
 
-  // Admin: Approve agent application
+  // Admin
   const approveAgentApplication = async (userId) => {
     setLoading(true);
     try {
       const response = await axiosInstance.post(`/agent/approve/${userId}`);
-
-      // Remove from pending applications if successful
       if (response.data.success) {
         setPendingApplications((prev) =>
           prev.filter((app) => app.userId !== userId)

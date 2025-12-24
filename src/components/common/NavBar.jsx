@@ -2,7 +2,10 @@ import { Link } from "react-router";
 import { useAuth } from "../../contexts/AuthContext";
 
 const NavBar = () => {
-  const { logout, loading, isAuthenticated } = useAuth();
+  const { logout, loading, isAuthenticated, user } = useAuth();
+  const isCustomer = user?.role === "customer";
+  const isAdmin = user?.role === "admin";
+  const isAgent = user?.role === "agent";
 
   if (loading) {
     return (
@@ -109,9 +112,21 @@ const NavBar = () => {
                     <span className="badge">New</span>
                   </a>
                 </li>
-                <li>
-                  <Link to={"/dashboard/customer"}>Dashboard</Link>
-                </li>
+                {isCustomer && (
+                  <li>
+                    <Link to={"/dashboard/customer"}>Dashboard</Link>
+                  </li>
+                )}
+                {isAdmin && (
+                  <li>
+                    <Link to={"/dashboard/admin"}>Admin Dashboard</Link>
+                  </li>
+                )}
+                {isAgent && (
+                  <li>
+                    <Link to={"/dashboard/agent"}>Agent Dashboard</Link>
+                  </li>
+                )}
                 <li>
                   <a onClick={handleLogout}>Logout</a>
                 </li>

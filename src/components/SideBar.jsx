@@ -53,6 +53,12 @@ const SideBar = () => {
                   <Link to={link.path}>{link.name}</Link>
                 </li>
               ))}
+            {isAdmin &&
+              adminLinks.map((link) => (
+                <li key={link.path}>
+                  <Link to={link.path}>{link.name}</Link>
+                </li>
+              ))}
           </ul>
         </div>
       </div>

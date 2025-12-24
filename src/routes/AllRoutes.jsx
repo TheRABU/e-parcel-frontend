@@ -8,6 +8,9 @@ import CustomerDashboard from "../pages/Dashboard/Customer/CustomerDashboard";
 import BookParcel from "../pages/Dashboard/Customer/BookParcel";
 import MyParcels from "../pages/Dashboard/Customer/MyParcels";
 import TrackParcelLive from "../pages/Dashboard/Customer/TrackParcelLive";
+import AgentDashboard from "../pages/Dashboard/Agent/AgentDashboard";
+import AssignedParcels from "../pages/Dashboard/Agent/AssignedParcels";
+import AdminDashboard from "../pages/Dashboard/admin/AdminDashboard";
 
 const AllRoutes = () => {
   const router = createBrowserRouter([
@@ -48,6 +51,22 @@ const AllRoutes = () => {
         {
           path: "/dashboard/customer/track-parcel",
           element: <TrackParcelLive />,
+        },
+
+        /// ADMIN ROUTES
+        {
+          path: "/dashboard/admin",
+          element: <AdminDashboard />,
+        },
+
+        /// AGENT ROUTES
+        {
+          path: "/dashboard/agent",
+          element: <AgentDashboard />,
+        },
+        {
+          path: "/dashboard/agent/assigned-parcels",
+          element: <AssignedParcels />,
         },
       ],
     },
